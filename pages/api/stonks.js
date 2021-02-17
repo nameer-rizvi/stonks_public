@@ -1,8 +1,4 @@
-import { api, stonkScraper, stonkProcessor } from "../../lib";
-
-// If request method is not a GET, return 405.
-// Run stonkScraper + stonkProcessor and return results.
-// If any errors, return 500 + error, and console.error for debugging.
+import { stonkScraper, stonkProcessor } from "../../lib";
 
 export default (req, res) =>
   req.method === "GET"
@@ -13,4 +9,4 @@ export default (req, res) =>
           console.error(error);
           res.status(500).send(error);
         })
-    : res.status(405).send(api.error["405"]);
+    : res.status(405).send();

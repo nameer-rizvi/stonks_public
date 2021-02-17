@@ -168,6 +168,7 @@ ul.filters-list {
   flex-wrap: wrap;
   margin-top: 7px;
   margin-bottom: 0;
+  align-items: baseline;
 }
 
 ul.filters-list li.filters-list-item:not(:last-child) {
@@ -229,14 +230,6 @@ th.sorted {
   text-decoration: underline;
 }
 
-th.sorted.false:before {
-  content: "\2193";
-}
-
-th.sorted.true:before {
-  content: "\2191";
-}
-
 td {
   border-bottom: solid 1px #000;
 }
@@ -249,16 +242,26 @@ td.gain {
   color: #4caf50;
 }
 
-td.loss:before {
-  content: "- ";
-}
-
-td.gain:before {
-  content: "+ ";
-}
-
 tbody tr:hover {
   background-color: #eee;
+}
+
+@media (min-width: 700px) {
+  th.sorted.false:before {
+    content: "\2193";
+  }
+
+  th.sorted.true:before {
+    content: "\2191";
+  }
+
+  td.loss:before {
+    content: "- ";
+  }
+
+  td.gain:before {
+    content: "+ ";
+  }
 }
 
 /* TABLE ROW POSTS LIST */

@@ -8,12 +8,12 @@
     "start": "next start"
   },
   "dependencies": {
-    "async-fetch": "^0.1.0",
-    "next": "10.0.3",
-    "react": "17.0.1",
+    "async-fetch": "^0.1.4",
+    "next": "^10.0.7",
+    "react": "^17.0.1",
     "react-dom": "17.0.1",
     "scrapefrom": "^2.1.5",
-    "simpul": "^0.3.7",
+    "simpul": "^0.3.8",
     "text-cleaner": "^1.2.1",
     "time-ago": "^0.2.1",
     "wink-sentiment": "^5.0.2"

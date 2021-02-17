@@ -1,8 +1,8 @@
 import { Fragment } from "react";
 import {
   useGoogleTagManager,
-  useParams,
-  getMinutes,
+  useFilters,
+  makeMinutes,
   HTMLHead,
   Error,
   MainContent,
@@ -11,40 +11,36 @@ import {
 import useAsyncFetch from "async-fetch";
 import { isArray } from "simpul";
 
-function Home({ query }) {
-  // Initialize Google Tag Manager for Google Analytics.
+function Home() {
   useGoogleTagManager();
 
-  // Initialize params/setParams and fetch stonks.
-  const { params, setParams } = useParams({ query });
+  const { filters, setFilters } = useFilters();
 
-  const { data: stonks, pending, error, sendRequest } = useAsyncFetch({
-    useEffectDependency: [query],
+  const { error, sendRequest, data, pending } = useAsyncFetch({
+    useEffectDependency: [filters],
     url: "/api/stonks",
-    query: params,
-    poll: getMinutes(5),
+    query: filters,
+    poll: makeMinutes(5),
   });
+
+  const mainContent = error ? (
+    <Error error={error} sendRequest={sendRequest} />
+  ) : isArray(data) ? (
+    <MainContent
+      initialStonks={data}
+      filters={{ values: filters, set: setFilters }}
+      fetchingNewStonks={pending}
+    />
+  ) : (
+    <Placeholder />
+  );
 
   return (
     <Fragment>
       <HTMLHead />
-      <main>
-        {error ? (
-          <Error error={error} sendRequest={sendRequest} />
-        ) : isArray(stonks) ? (
-          <MainContent
-            initialStonks={stonks}
-            fetchingNewStonks={pending}
-            params={{ values: params, set: setParams }}
-          />
-        ) : (
-          <Placeholder />
-        )}
-      </main>
+      <main>{mainContent}</main>
     </Fragment>
   );
 }
-
-export const getServerSideProps = async ({ query }) => ({ props: { query } });
 
 export default Home;
