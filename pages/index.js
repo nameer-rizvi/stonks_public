@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { useEffect, Fragment } from "react";
 import {
   googleTagManager,
   useFilters,
@@ -12,7 +12,9 @@ import useAsyncFetch from "async-fetch";
 import { isArray } from "simpul";
 
 function Home() {
-  googleTagManager.initialize();
+  useEffect(() => {
+    googleTagManager.initialize();
+  }, []);
 
   const { filters, setFilters } = useFilters();
 
