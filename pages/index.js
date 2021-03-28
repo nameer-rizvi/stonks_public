@@ -1,6 +1,6 @@
 import { useEffect, Fragment } from "react";
 import {
-  googleTagManager,
+  useGoogleTagManager,
   useFilters,
   makeMinutes,
   HTMLHead,
@@ -12,9 +12,7 @@ import useAsyncFetch from "async-fetch";
 import { isArray } from "simpul";
 
 function Home() {
-  useEffect(() => {
-    googleTagManager.initialize();
-  }, []);
+  useGoogleTagManager();
 
   const { filters, setFilters } = useFilters();
 
