@@ -1,4 +1,4 @@
-export default [
+[
   "PCAOB",
   "MYTH",
   "CGM",
@@ -603,5 +603,5 @@ export default [
   "TLDR",
   "TSA",
   "VOLM",
-  "TDLR",
-];
+  "TDLR"
+]

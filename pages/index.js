@@ -23,7 +23,7 @@ function Home() {
     poll: makeMinutes(5),
   });
 
-  const mainContent = error ? (
+  const main = error ? (
     <Error error={error} sendRequest={sendRequest} />
   ) : isArray(data) ? (
     <MainContent
@@ -38,7 +38,7 @@ function Home() {
   return (
     <Fragment>
       <HTMLHead />
-      <main>{mainContent}</main>
+      <main>{main}</main>
     </Fragment>
   );
 }
