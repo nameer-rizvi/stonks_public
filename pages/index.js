@@ -23,22 +23,22 @@ function Home() {
     poll: makeMinutes(5),
   });
 
-  const main = error ? (
-    <Error error={error} sendRequest={sendRequest} />
-  ) : isArray(data) ? (
-    <MainContent
-      initialStonks={data}
-      filters={{ values: filters, set: setFilters }}
-      fetchingNewStonks={pending}
-    />
-  ) : (
-    <Placeholder />
-  );
-
   return (
     <Fragment>
       <HTMLHead />
-      <main>{main}</main>
+      <main>
+        {error ? (
+          <Error error={error} sendRequest={sendRequest} />
+        ) : isArray(data) ? (
+          <MainContent
+            initialStonks={data}
+            filters={{ values: filters, set: setFilters }}
+            fetchingNewStonks={pending}
+          />
+        ) : (
+          <Placeholder />
+        )}
+      </main>
     </Fragment>
   );
 }
